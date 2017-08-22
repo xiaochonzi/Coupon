@@ -1,12 +1,34 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/hot/index",
+    "pages/history/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "惊叹号优惠券",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar":{
+    "color":"#999",
+    "selectedColor":"#ec3e42",
+    "backgroundColor":"#f7f7f7",
+    "borderStyle":"black",
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "text":"首页"
+      },
+      {
+        "pagePath":"pages/hot/index",
+        "text":"热门"
+      },
+      {
+        "pagePath":"pages/history/index",
+        "text":"历史"
+      }
+    ]
   }
 }
