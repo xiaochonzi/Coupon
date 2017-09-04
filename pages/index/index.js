@@ -5,7 +5,15 @@ var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {}
+    userInfo: {},
+    couponList:[],
+    pageIndex:0,
+    isLoading:true,
+    loadOver:false,
+    categoryList:[{CateGoryID:"",CategoryName:"其他"},{CateGoryID:"all",CategoryName:"全部"}],
+    selectCategory:"all",
+    selectIndex:0,
+    inputContent:""
   },
   //事件处理函数
   bindViewTap: function() {
@@ -14,11 +22,49 @@ Page({
     })
   },
   onLoad: function () {
-    console.log('onLoad')
+    
+  },
+  getCategoryList:function(){
     var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo()
+    wx.request({
+      url: '',
+      data:{
+        "account":''
+      },
+      method:'POST',
+      success:function(ret){
+        if(ret.data.result==1){
+          that.setData(
+            {
+              
+            }
+          )
+        }
+      }
+    })
+  },
+  bindPickerChange:function(e){
+    this.setData(
+      {
 
-    console.log('after  getUserInfo')
+      }
+    )
+    if(!false){
+      wx.setStorageSync('showCategoryName','all')
+    }else{
+      wx.setStorageSync('showCategoryName', 'other')
+    }
+  },
+  getMoreCouponList:function(){
+
+  },
+  onPullDownRefresh:function(){
+    wx.stopPullDownRefresh()
+    console.log('onPullDownRefresh')
+    this.getMoreCouponList()
+  },
+  onReachBottom:function(){
+    console.log('onReachBottom')
+    this.getMoreCouponList()
   }
 })
