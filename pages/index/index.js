@@ -4,21 +4,19 @@ var util = require("../../utils/util.js")
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {}
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    couponList:[],
+    pageIndex:0,
+    isLoading:true,
+    loadOver:false,
+    categoryList:[{CategoryID:"",CategoryName:"其他"},{CategoryID:"all",CategoryName:"全部"}],
+    selectCategory:"all",
+    showCategoryName:"全部",
+    selectIndex:0,
+    inputContent:""
   },
   onLoad: function () {
-    console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo()
-
-    console.log('after  getUserInfo')
   }
 })
