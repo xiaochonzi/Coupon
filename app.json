@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/hot/index",
-    "pages/history/index"
+    "pages/history/index",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,23 +12,23 @@
     "navigationBarTitleText": "有赞精选",
     "navigationBarTextStyle": "black"
   },
-  "tabBar":{
-    "color":"#999",
-    "selectedColor":"#ec3e42",
-    "backgroundColor":"#f7f7f7",
-    "borderStyle":"black",
-    "list":[
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#ec3e42",
+    "backgroundColor": "#f7f7f7",
+    "borderStyle": "black",
+    "list": [
       {
-        "pagePath":"pages/index/index",
-        "text":"首页"
+        "pagePath": "pages/index/index",
+        "text": "首页"
       },
       {
-        "pagePath":"pages/hot/index",
-        "text":"热门"
+        "pagePath": "pages/hot/index",
+        "text": "热门"
       },
       {
-        "pagePath":"pages/history/index",
-        "text":"历史"
+        "pagePath": "pages/history/index",
+        "text": "历史"
       }
     ]
   }

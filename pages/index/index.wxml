@@ -30,6 +30,35 @@
   </view>
   <view id="coupon-list">
     <navigator wx:for="{{couponList}}" wx:key="item.itemID" url="../detail/detail" bindtap="setCouponInfo" data-index="index">
+    <view class="coupon-item">
+      <view class="border-left"></view>
+      <image src="{{item.ItemPic}}"></image>
+      <view class="goods-content">
+        <view class="goods-content-view">
+          <view class="goods-name">{{item.itemName}}</view>
+          <view class="goods-price-sales">
+            <view class="goods-price">￥{{item.ItemPrice}}</view>
+            <view class="goods-price-coupon">￥{{item.QuanHouJia}}</view>
+            <view class="goods-sales">月销量：{{item.MonthlySales}}</view>
+          </view>
+          <view class="coupon-denomination">{{item.CouponDenomination}}</view>
+        </view>
+      </view>
+      <view class="coupon-content">
+        <view class="coupon-background">券</view>
+        <view class="coupon-content-view">
+          <view class="coupon-coin">￥{{item.Jian}}</view>
+          <view class="coupon-num">数量:{{item.CouponTotal}}</view>
+          <view class="coupon-ratio">
+            <text>优惠\n比例</text>
+            <view>{{item.ZonHeBiLiText}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="border-right"></view>
+    </view>
     </navigator>
   </view>
+  <import src="../template/template.wxml"/>
+<template is="loading" data="{{isLoading,loadOver}}"></template>
 </view>

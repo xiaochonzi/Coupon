@@ -19,6 +19,10 @@ App({
     }
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    Acount:{
+      UserName:'上海锡域',
+      Password:'jjz888'
+    }
   }
 })

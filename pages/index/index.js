@@ -14,7 +14,29 @@ Page({
     selectIndex:0,
     inputContent:""
   },
-  onLoad: function () {
-    
+  onLoad: function (options) {
+    this.getCategoryList()
+    console.log('onLoad')
   },
+  getCategoryList:function(){
+    var that = this
+    wx.request({
+      url: 'https://taoquan.cillbiz.com/GetCategory.ashx',
+      data:{
+        "Acount":{
+          "UserName":app.globalData.Acount.UserName,
+          "Password": app.globalData.Acount.Password
+        }
+      },
+      method:"POST",
+      success:function(resp){
+        if(resp.data.Result=="请求成功"){
+          that.setData({
+            categeoryList:resp.data.Categorys.concat(that.data.categoryList),
+            selectIndex:resp.data.Categorys.length + 1
+          })
+        }
+      }
+    })
+  }
 })
