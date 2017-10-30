@@ -16,6 +16,22 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function parseQueryString(url) {
+  var obj = {};
+  var keyvalue = [];
+  var key = "",
+    value = "";
+  var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+  for (var i in paraString) {
+    keyvalue = paraString[i].split("=");
+    key = keyvalue[0];
+    value = keyvalue[1];
+    obj[key] = value;
+  }
+  return obj;
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatUrl:parseQueryString
 }

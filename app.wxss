@@ -1,16 +1,5 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
-
-#mask {
-  z-index: 1200;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  left: 0px;
-  top: 0px;
-}
-
 .template-load {
   text-align: center;
   font-size: 14px;
@@ -31,7 +20,15 @@
   -webkit-animation: rotate 0.75s linear infinite;
   animation: rotate 0.75s linear infinite;
 }
-
+.mask {
+  z-index: 1200;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  left: 0px;
+  top: 0px;
+}
 @-webkit-keyframes rotate {
   0% {
     -webkit-transform: rotate(0deg);
@@ -62,12 +59,12 @@
 
 /*tab页面公用样式*/
 
-#page-index {
+.page-index {
   padding-top: 50px;
   background-color: #f7f7f7;
 }
 
-#search {
+.search {
   position: fixed;
   top: 0;
   height: 50px;
@@ -78,13 +75,13 @@
   z-index: 3;
 }
 
-#logo {
+.logo {
   width: 30px;
   height: 30px;
   margin-left: 10px;
 }
 
-#search-input {
+.search-input {
   flex-grow: 1;
   height: 20px;
   margin: 0 10px;
@@ -100,7 +97,7 @@
   font-size: 14px;
 }
 
-#search-label {
+.search-label {
   position: absolute;
   right: 10px;
   top: 8px;
@@ -108,12 +105,12 @@
   padding: 6px 10px;
 }
 
-#search-img {
+.search-img {
   width: 20px;
   height: 20px;
 }
 
-#category {
+.category {
   height: 50px;
   display: table;
   width: 100%;

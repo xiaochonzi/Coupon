@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/hot/index",
-    "pages/history/index",
     "pages/detail/detail"
   ],
   "window": {
@@ -20,15 +18,11 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "特价精选"
       },
       {
         "pagePath": "pages/hot/index",
-        "text": "热门"
-      },
-      {
-        "pagePath": "pages/history/index",
-        "text": "历史"
+        "text": "省钱神券"
       }
     ]
   }

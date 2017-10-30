@@ -1,4 +1,6 @@
 // pages/detail/detail.js
+var util = require("../../utils/util.js")
+var app = getApp()
 Page({
 
   /**
@@ -7,11 +9,8 @@ Page({
   data: {
     couponInfo:{},
     picWidth:wx.getSystemInfoSync().windowWidth,
-    platformTypeUrl:"../../images/taobao.png",
     loadingBtn:false,
     showStatus:false,
-    taoKouLing:"",
-    maxLength:0
   },
 
   /**
@@ -21,11 +20,6 @@ Page({
     this.setData({
       couponInfo:wx.getStorageSync('couponInfo')
     })
-    if(this.data.couponInfo.PlatformType=="天猫"){
-      this.setData({
-        platformTypeUrl:"../../images/tmall.png"
-      })
-    }
   },
 
   /**
@@ -76,29 +70,24 @@ Page({
   onShareAppMessage: function () {
   
   },
-  hideView:function(){
-    this.setData({
-      showStatus:false
-    })
-  },
-  getCoupon:function(options){
+  getCoupon:function(e){
     var that = this
-    that.setData({
-      loadingBtn:true
-    })
+    var item_url = that.data.couponInfo.item_url
+    var index = item_url.indexOf(':')
+    item_url = 'https'+item_url.substring(index)
     wx.request({
-      url:"",
+      url: 'https://xiaochonzi.com/api/coupon_tkl',
       data:{
-        "itemId": that.data.couponInfo.ItemId,
-        "couponId": that.data.couponInfo.CouponId,
+        text:'特价精选',
+        url:item_url
+      }, 
+      dataType: 'json',
+      method: 'GET',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
       },
-      method:"POST",
-      success:function(ret){
-        if(ret.data.result == 1){
-          that.setData({
-
-          })
-        }
+      success:function(resp){
+        console.log(resp)
       }
     })
   }
