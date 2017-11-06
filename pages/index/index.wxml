@@ -1,49 +1,95 @@
-<!--index.wxml-->
-<view class="page-index">
-  <view class="search">
-    <image class="logo" src="../../images/logo.png"></image>
-    <input  class="search-input" value="{{inputContent}}" placeholder="输入关键字" bindinput='inputChange' bindconfirm="selectByItemName"/>
-    <label idclass="search-label">
-      <image class="search-img" src="../../images/search.png" bindtap="selectByItemName"></image>
+<!--pages/index/index.wxml-->
+<view class='page'>
+  <view class='search'>
+    <image class='logo' src='../../images/logo.png'></image>
+    <input class='search-input' placeholder='' bindinput='' bindconfirm=''></input>
+    <label class='search-label'>
+      <image class='search-img' src='../../images/search.png' bindtap=''></image>
     </label>
   </view>
-  <view class="category">
-    <view class="category-item {{selectCategory=='16' ? 'category-select':''}}" bindtap="selectByCategory" data-category-id="16">
-      <view ><image src="../../images/nvzhuang.png"></image>女装</view>
-    </view>
-    <view class="category-item {{selectCategory=='30' ? 'category-select':''}}" bindtap="selectByCategory" data-category-id="30">
-      <view ><image src="../../images/nanzhuang.png"></image>男装</view>
-    </view>
-    <view class="category-item {{selectCategory=='50010788' ? 'category-select':''}}" bindtap="selectByCategory" data-category-id="50010788">
-      <view ><image src="../../images/meizhuang.png"></image>美妆</view>
-    </view>
-    <view class="category-item category-item-last {{selectCategory!='16'&&selectCategory!='30'&&selectCategory!='50010788'?'category-select':''}}">
+  <view class='cat' style='margin-top: 50px;'>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='16'>
       <view>
-        <picker bindchange='bindPickerChange' value='{{selectIndex}}' range='{{categoryList}}' range-key='name'>
-          <view class="picker"><image src='../../images/{{selectCategoryPic}}.png'></image>{{showCategoryName}}</view>
-        </picker>
+        <image class='category-img' src='../../images/nvzhuang.png'></image>
       </view>
+      <view class='category-text'>女装</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='30'>
+      <view>
+        <image class='category-img' src='../../images/nanzhuang.png'></image>
+      </view>
+      <view class='category-text'>男装</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='1625'>
+      <view>
+        <image class='category-img' src='../../images/neiyi.png'></image>
+      </view>
+      <view class='category-text'>内衣</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='35,50014812,50022517,50008165'>
+      <view>
+        <image class='category-img' src='../../images/muying.png'></image>
+      </view>
+      <view class='category-text'>母婴</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='50010788,1801'>
+      <view>
+        <image class='category-img' src='../../images/meizhuang.png'></image>
+      </view>
+      <view class='category-text'>化妆品</view>
     </view>
   </view>
-  <view class="coupon-list">
-    <navigator wx:for="{{couponList}}" wx:key="item.num_iid" url="../detail/detail" bindtap="setCouponInfo" data-index="{{index}}">
-    <view class="coupon-item">
-      <view class="border-left"></view>
-      <image src="{{item.pict_url}}"></image>
-      <view class="goods-content">
-        <view class="goods-content-view">
-          <view class="goods-name">{{item.title}}</view>
-          <view class="goods-price-sales">
-            <view class="goods-price">￥{{item.reserve_price}}</view>
-            <view class="goods-price-coupon">￥{{item.zk_final_price}}</view>
-            <view class="goods-sales">月销量：{{item.volume}}</view>
+  <view class='cat'>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='21,50016349,50016348,50008163'>
+      <view>
+        <image class='category-img' src='../../images/jiafang.png'></image>
+      </view>
+      <view class='category-text'>居家</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='50011740,50006843,50006842'>
+      <view>
+        <image class='category-img' src='../../images/xiexue.png'></image>
+      </view>
+      <view class='category-text'>鞋包</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='50022703,50011972,50012100,50012082'>
+      <view>
+        <image class='category-img' src='../../images/jiadian.png'></image>
+      </view>
+      <view class='category-text'>家电</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='26'>
+      <view>
+        <image class='category-img' src='../../images/che.png'></image>
+      </view>
+      <view class='category-text'>车品</view>
+    </view>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='1512,14,11'>
+      <view>
+        <image class='category-img' src='../../images/shoujishuma.png'></image>
+      </view>
+      <view class='category-text'>数码</view>
+    </view>
+  </view>
+  <view class='list'>
+    <view class='rows' wx:for='{{couponList}}' wx:for-item='groups'>
+      <navigator wx:for='{{groups}}' wx:for-item='item'>
+        <view class='coupon-item'>
+          <image src='{{item.pict_url}}'></image>
+          <view class='goods-content'>
+            <view class='goods-content-view'>
+              <view class='goods-title'>{{item.title}}</view>
+              <view class='goods-price-sales'>
+                <view class='goods-price'>￥{{item.zk_final_price}}</view>
+                <view class='goods-volume'>{{item.volume}}人付款</view>
+              </view>
+              <view class='coupon-info'>{{item.coupon_info}}</view>
+            </view>
           </view>
-          <view class="coupon-denomination">{{item.CouponDenomination}}</view>
         </view>
-      </view>
+      </navigator>
     </view>
-    </navigator>
   </view>
-  <import src="../template/footer.wxml" />
-  <template is="loading" data="{{isLoading,loadOver}}" />
+  <import src='../template/footer.wxml'/>
+  <template is='loading' data='{{isLoading,loadOver}}'/>
 </view>

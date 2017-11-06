@@ -1,7 +1,0 @@
-<!--index.wxml-->
-<view>
-  <view>
-    <view class='good-volume'>销售量:214979</view>
-  </view>
-</view>
-

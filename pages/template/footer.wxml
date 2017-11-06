@@ -2,10 +2,15 @@
   <view class="template-load" hidden="{{isLoading ? true : false}}">
     <view>上拉加载更多</view>
   </view>
-  <view class="template-load" hidden="{{isLoading ? false : true}}">
-    <view hidden="{{loadOver ? true : false}}">
-      <view class="loading"></view>正在加载
+  <view hidden='{{isLoading ? false : true}}'>
+    <view class='weui-loadmore' hidden='{{loadOver ? true : false}}'>
+      <view class='weui-loading'></view>
+      <view class='weui-loadmore_tips'>正在加载</view>
     </view>
-    <view hidden="{{loadOver ? false : true}}">没有更多数据</view>
+  </view>
+  <view hidden="{{loadOver ? false : true}}">
+    <view class='weui-loadmore weui-loadmore_line'>
+      <view class='weui-loadmore_tips weui-loadmore_tips_in-line'>暂无数据</view>
+    </view>
   </view>
 </template>

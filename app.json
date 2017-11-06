@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/hot/index",
+    "pages/hot/hot",
     "pages/detail/detail"
   ],
   "window": {
@@ -21,8 +21,8 @@
         "text": "特价精选"
       },
       {
-        "pagePath": "pages/hot/index",
-        "text": "省钱神券"
+        "pagePath":"pages/hot/hot",
+        "text":"精品优惠"
       }
     ]
   }

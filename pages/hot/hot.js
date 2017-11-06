@@ -1,4 +1,4 @@
-// index.js
+// pages/hot/hot.js
 Page({
 
   /**

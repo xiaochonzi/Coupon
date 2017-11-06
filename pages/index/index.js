@@ -1,58 +1,103 @@
-//index.js
-//获取应用实例
-var util = require("../../utils/util.js")
-var app = getApp()
+// pages/index/index.js
+var config = require('../../config.js')
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
+    imageWidth:wx.getSystemInfoSync().windowHeight,
+    currentCateId:"16",
     couponList:[],
-    pageIndex:0,
+    query:'',
+    pageNo:1,
     isLoading:true,
-    loadOver:false,
-    categoryList:[{cid:'all',name:'全部',pic:'all'}],
-    selectCategory:'16',
-    showCategoryName:"全部",
-    selectCategoryPic:'all',
-    selectIndex:0,
-    inputContent:""
+    loadOver:false
   },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
-    //页面载入
-    this.getCategoryList()
+    this.getCouponList()
   },
-  onShow:function(){
-    //页面展示
-    if(wx.getStorageSync('isDetailBack')){
-      wx.removeStorageSync('isDetailBack')
-      return
-    }
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
     this.setData({
       couponList:[],
-      pageIndex:0,
-      isloading:true,
-      loadOver:false
+      loadOver:false,
+      isLoading:true,
+      pageNo:1
+    })
+    this.getCouponList()
+    wx.stopPullDownRefresh()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    this.setData({
+      isLoading:true,
+      loadOver:false,
+      pageNo:this.data.pageNo+1
     })
     this.getCouponList()
   },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  },
   getCouponList:function(){
-    //获取优惠商品
     var that = this
     wx.request({
-      url: 'https://xiaochonzi.com/api/item',
+      url: config.coupon_item,
       data:{
-        q:that.data.inputContent,
-        cat:that.data.selectCategory,
-        page_no:that.data.pageIndex
+        'q': that.data.query,
+        'cat':that.data.currentCateId,
+        'page_no':that.data.pageNo
       },
-      dataType:'json',
       method:'GET',
-      header:{
-        'content-type': 'application/x-www-form-urlencoded'
-      },
+      dataType:'json',
       success:function(resp){
         if(resp.data.result==1){
           that.setData({
-            isLoading: false,
-            couponList: resp.data.data.concat(that.data.couponList)
+            couponList:that.data.couponList.concat(resp.data.data),
+            isLoading:false,
           })
         }else{
           that.setData({
@@ -63,78 +108,15 @@ Page({
       }
     })
   },
-  getCategoryList:function(){
-    //获取分类
-    var that = this
-    wx.request({
-      url: 'https://xiaochonzi.com/api/cate',
-      data:{
-      },
-      method:"GET",
-      success:function(resp){
-        if(resp.data.result==1){
-          that.setData({
-            categoryList: resp.data.data.concat(that.data.categoryList)
-          })
-        }
-      }
-    })
-  },
-  bindPickerChange:function(e){
+  selectByCate: function(e){
+    console.log(e)
     var that = this
     that.setData({
-      couponList:[],
-      loadOver:false,
+      couponList: [],
       isLoading:true,
-      pageIndex:0,
-      selectIndex:e.detail.value,
-      selectCategory:that.data.categoryList[e.detail.value].cid,
-      showCategoryName:that.data.categoryList[e.detail.value].name
+      loadOver:false,
+      currentCateId:e.currentTarget.dataset.cateId,
     })
     that.getCouponList()
-  },
-  selectByCategory:function(e){
-    //按分类查询
-    var that = this
-    that.setData({
-      couponList:[],
-      pageIndex:0,
-      isLoading:true,
-      loadOver:false,
-      selectCategory:e.currentTarget.dataset.categoryId,
-    })
-    that.getCouponList()
-  },
-  inputChange:function(e){
-    var that = this
-    that.setData({
-      inputContent:e.detail.value
-    })
-  },
-  selectByItemName:function(e){
-    var that = this
-    that.getCouponList()
-  },
-  setCouponInfo:function(e){
-    var coupon = this.data.couponList[e.currentTarget.dataset.index]
-    wx.setStorageSync('couponInfo',coupon)
-  },
-  onPullDownRefresh:function(){
-    this.setData({
-      couponList:[],
-      loadOver:false,
-      isLoading:true,
-      pageIndex:0
-    })
-    this.getCouponList()
-    wx.stopPullDownRefresh()
-  },
-  onReachBottom:function(){
-    this.setData({
-      isLoading:true,
-      loadOver:false,
-      pageIndex:this.data.pageIndex+1
-    })
-    this.getCouponList()
   }
 })
