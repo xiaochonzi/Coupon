@@ -5,3 +5,11 @@
   font-size: 14px;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif
 }
+
+.template-load {
+    text-align: center;
+    font-size: 14px;
+    height: 45px;
+    line-height: 45px;
+    background-color: #f7f7f7;
+  }

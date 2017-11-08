@@ -11,6 +11,8 @@ Page({
     picWidth:wx.getSystemInfoSync().windowWidth,
     loadingBtn:false,
     showStatus:false,
+    password:'',
+    maxLength:0
   },
 
   /**
@@ -72,13 +74,16 @@ Page({
   },
   getCoupon:function(e){
     var that = this
-    var item_url = that.data.couponInfo.item_url
+    that.setData({
+      loadingBtn:true
+    })
+    var item_url = that.data.couponInfo.coupon_click_url
     var index = item_url.indexOf(':')
     item_url = 'https'+item_url.substring(index)
     wx.request({
-      url: 'https://xiaochonzi.com/api/coupon_tkl',
+      url: config.coupon_tkl,
       data:{
-        text:'特价精选',
+        text:'新优惠新体验',
         url:item_url
       }, 
       dataType: 'json',
@@ -87,7 +92,14 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success:function(resp){
-        console.log(resp)
+        if(resp.data.result==1){
+          that.setData({
+            password:resp.data.data,
+            showStatus:true,
+            loadingBtn:false,
+            maxLength:resp.data.data.length
+          })
+        }
       }
     })
   }

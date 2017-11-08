@@ -62,7 +62,7 @@
 }
 
 .category-text{
-  
+  color: #D81E06;
 }
 
 .rows{

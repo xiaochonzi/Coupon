@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    
   },
 
   /**
@@ -108,6 +108,20 @@ Page({
       }
     })
   },
+  changeQuery:function(e){
+    wx.setStorageSync('query', e.detail.value)
+  },
+  selectByQuery:function(e){
+    this.setData({
+      couponList:[],
+      loadOver:false,
+      isLoading:true,
+      pageNo:1,
+      currentCateId:'',
+      query:wx.getStorageSync('query')
+    })
+    this.getCouponList()
+  },
   selectByCate: function(e){
     console.log(e)
     var that = this
@@ -115,8 +129,13 @@ Page({
       couponList: [],
       isLoading:true,
       loadOver:false,
+      query:'',
       currentCateId:e.currentTarget.dataset.cateId,
     })
     that.getCouponList()
+  },
+  setCouponInfo:function(e){
+    var info = e.currentTarget.dataset.info
+    wx.setStorageSync('couponInfo', info)
   }
 })

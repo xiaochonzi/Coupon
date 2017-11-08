@@ -1,10 +1,10 @@
 <!--pages/detail/detail.wxml-->
 <view class="page-detail">
   <view>
-    <swiper indicator-dots='true' autoplay='true'>
+    <swiper class='swiper' indicator-dots='true' autoplay='true'>
       <block wx:for='{{couponInfo.small_images.string}}' wx:key='{{item}}'>
         <swiper-item>
-          <image src='{{item}}' width='450' height='350'></image>
+          <image class='info-img' src='{{item}}'></image>
         </swiper-item>
       </block>
     </swiper>
@@ -16,23 +16,33 @@
       <view class="good-price-coupon">促销价:￥{{couponInfo.zk_final_price}}</view>
     </view>
   </view>
-  <view class="shop">
-      <view class="shop-name">店铺名称:{{couponInfo.nick}}</view>
+  <view class="coupon-info">
+    <view class="coupon-info-item coupon-info-item-first">
+      <view class="coupon-denomination">{{couponInfo.CouponDenomination}}</view>
+      <view class="coupon-coin">
+        <image src="../../images/coupon.png"></image>￥{{couponInfo.Jian}}</view>
+      <view class="goods-sales">月销量: {{couponInfo.MonthlySales}}</view>
+    </view>
+    <view class="coupon-info-item-des">
+      <view class="coupon-des">剩余优惠券: {{couponInfo.CouponRemaining}}</view>
+      <view class="coupon-des">优惠券结束时间: {{couponInfo.CouponEndTime}}</view>
+    </view>
   </view>
-  <view>
-    
+  <view class="shop">
+    <view class="shop-name">店铺名称:{{couponInfo.nick}}</view>
   </view>
   <view class="get-coupon">
     <button bindtap="getCoupon" type="warn" loading="{{loadingBtn}}">淘宝口令购买</button>
   </view>
-  <view hidden="{{showStatus?false:true}}" id="mask">
+  <view hidden="{{showStatus?false:true}}" class="mask">
     <view class="tao-kou-ling">
       <view class="tao-kou-ling-title">
-        淘宝口令购买<icon class="closed" type="cancel" size="30" color="#fff" bindtap="hideView"></icon>
+        淘宝口令购买
+        <icon class="closed" type="cancel" size="30" color="#fff" bindtap="hideView"></icon>
       </view>
       <view class="tao-kou-ling-content">
         <view class="copy-method">点击文本后，长按选择“全部复制”</view>
-        <input class="tao-kou-ling-text" value='{{taoKouLing}}' maxlength='{{maxLength}}'></input>
+        <input class="tao-kou-ling-text" value='{{password}}' maxlength='{{maxLength}}'></input>
       </view>
       <view class="explain">复制之后，请打开【手机淘宝】购买</view>
     </view>

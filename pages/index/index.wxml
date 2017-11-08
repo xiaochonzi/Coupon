@@ -2,78 +2,78 @@
 <view class='page'>
   <view class='search'>
     <image class='logo' src='../../images/logo.png'></image>
-    <input class='search-input' placeholder='' bindinput='' bindconfirm=''></input>
+    <input class='search-input' placeholder='没有想要的？搜索试试' bindinput='changeQuery' bindconfirm='selectByQuery'></input>
     <label class='search-label'>
-      <image class='search-img' src='../../images/search.png' bindtap=''></image>
+      <image class='search-img' src='../../images/search.png' bindtap='selectByQuery'></image>
     </label>
   </view>
   <view class='cat' style='margin-top: 50px;'>
     <view class='category-item' bindtap='selectByCate' data-cate-id='16'>
       <view>
-        <image class='category-img' src='../../images/nvzhuang.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==16?'nvzhuang-select':'nvzhuang'}}.png"></image>
       </view>
-      <view class='category-text'>女装</view>
+      <view class="{{currentCateId==16?'category-text':''}}">女装</view>
     </view>
     <view class='category-item' bindtap='selectByCate' data-cate-id='30'>
       <view>
-        <image class='category-img' src='../../images/nanzhuang.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==30?'nanzhuang-select':'nanzhuang'}}.png"></image>
       </view>
-      <view class='category-text'>男装</view>
+      <view class="{{currentCateId==30?'category-text':''}}">男装</view>
     </view>
     <view class='category-item' bindtap='selectByCate' data-cate-id='1625'>
       <view>
-        <image class='category-img' src='../../images/neiyi.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==1625?'neiyi-select':'neiyi'}}.png"></image>
       </view>
-      <view class='category-text'>内衣</view>
+      <view class="{{currentCateId==1625?'category-text':''}}">内衣</view>
     </view>
-    <view class='category-item' bindtap='selectByCate' data-cate-id='35,50014812,50022517,50008165'>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='35'>
       <view>
-        <image class='category-img' src='../../images/muying.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==35?'muying-select':'muying'}}.png"></image>
       </view>
-      <view class='category-text'>母婴</view>
+      <view class="{{currentCateId==35?'category-text':''}}">母婴</view>
     </view>
-    <view class='category-item' bindtap='selectByCate' data-cate-id='50010788,1801'>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='50010788'>
       <view>
-        <image class='category-img' src='../../images/meizhuang.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==50010788?'meizhuang-select':'meizhuang'}}.png"></image>
       </view>
-      <view class='category-text'>化妆品</view>
+      <view class="{{currentCateId==50010788?'category-text':''}}">化妆品</view>
     </view>
   </view>
   <view class='cat'>
-    <view class='category-item' bindtap='selectByCate' data-cate-id='21,50016349,50016348,50008163'>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='21'>
       <view>
-        <image class='category-img' src='../../images/jiafang.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==21?'jiafang-select':'jiafang'}}.png"></image>
       </view>
-      <view class='category-text'>居家</view>
+      <view class="{{currentCateId==21?'category-text':''}}">居家</view>
     </view>
-    <view class='category-item' bindtap='selectByCate' data-cate-id='50011740,50006843,50006842'>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='50011740'>
       <view>
-        <image class='category-img' src='../../images/xiexue.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==50011740?'xiexue-select':'xiexue'}}.png"></image>
       </view>
-      <view class='category-text'>鞋包</view>
+      <view class="{{currentCateId==50011740?'category-text':''}}">鞋包</view>
     </view>
-    <view class='category-item' bindtap='selectByCate' data-cate-id='50022703,50011972,50012100,50012082'>
+    <view class='category-item' bindtap='selectByCate' data-cate-id='29'>
       <view>
-        <image class='category-img' src='../../images/jiadian.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==29?'chongwu-select':'chongwu'}}.png"></image>
       </view>
-      <view class='category-text'>家电</view>
+      <view class="{{currentCateId==29?'category-text':''}}">宠物</view>
     </view>
     <view class='category-item' bindtap='selectByCate' data-cate-id='26'>
       <view>
-        <image class='category-img' src='../../images/che.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId==26?'che-select':'che'}}.png"></image>
       </view>
-      <view class='category-text'>车品</view>
+      <view class="{{currentCateId==26?'category-text':''}}">车品</view>
     </view>
     <view class='category-item' bindtap='selectByCate' data-cate-id='1512,14,11'>
       <view>
-        <image class='category-img' src='../../images/shoujishuma.png'></image>
+        <image class='category-img' src="../../images/{{currentCateId=='1512,14,11'?'shuma-select':'shuma'}}.png"></image>
       </view>
-      <view class='category-text'>数码</view>
+      <view class="{{currentCateId=='1512,14,11'?'category-text':''}}">数码</view>
     </view>
   </view>
   <view class='list'>
     <view class='rows' wx:for='{{couponList}}' wx:for-item='groups'>
-      <navigator wx:for='{{groups}}' wx:for-item='item'>
+      <navigator wx:for='{{groups}}' wx:for-item='item' url='../detail/detail' bindtap='setCouponInfo' data-info='{{item}}'>
         <view class='coupon-item'>
           <image src='{{item.pict_url}}'></image>
           <view class='goods-content'>
