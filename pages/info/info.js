@@ -1,19 +1,18 @@
-// pages/hot/hot.js
-var config = require('../../config.js')
+// pages/info/info.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    catList:[]
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCatList()
+  
   },
 
   /**
@@ -63,20 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  getCatList:function(){
-    var that = this
-    wx.request({
-      url: config.cat,
-      success:function(resp){
-        that.setData({
-          catList:resp.data.data
-        })
-      }
-    })
-  },
-  setCat:function(e){
-    console.log(e)
-    wx.setStorageSync('cat', e.currentTarget.dataset.cat)
   }
 })

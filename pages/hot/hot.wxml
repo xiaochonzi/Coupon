@@ -1,2 +1,15 @@
 <!--pages/hot/hot.wxml-->
-<text>pages/hot/hot.wxml</text>
+<view class='page'>
+  <view class='list'>
+    <block wx:for='{{catList}}' wx:for-item='cat'>
+      <navigator url="../list/list" class="weui-cell weui-cell_access" hover-class="weui-cell_active" data-cat='{{cat}}' bindtap='setCat'>
+        <view class="weui-cell__hd">
+        </view>
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>{{cat.name}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+    </block>
+  </view>
+</view>

@@ -1,8 +1,11 @@
 {
   "pages": [
+        "pages/hot/hot",
     "pages/index/index",
-    "pages/hot/hot",
-    "pages/detail/detail"
+
+    "pages/detail/detail",
+    "pages/list/list",
+    "pages/info/info"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,11 +21,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "特价精选"
+        "text": "特价精选",
+        "iconPath": "images/hot.png",
+        "selectedIconPath": "images/hot-select.png"
       },
       {
-        "pagePath":"pages/hot/hot",
-        "text":"精品优惠"
+        "pagePath": "pages/hot/hot",
+        "text": "精品优惠",
+        "iconPath": "images/favour.png",
+        "selectedIconPath": "images/favour-select.png"
       }
     ]
   }

@@ -1,4 +1,4 @@
-// pages/hot/hot.js
+// pages/list/list.js
 var config = require('../../config.js')
 Page({
 
@@ -6,14 +6,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    catList:[]
+    cat:{},
+    itemList:[],
+    loadOver:false,
+    isLoading:true,
+    pageNo:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCatList()
+    this.setData({
+      cat:wx.getStorageSync('cat')
+    })
+    this.getItem()
   },
 
   /**
@@ -55,7 +62,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
   },
 
   /**
@@ -64,19 +70,21 @@ Page({
   onShareAppMessage: function () {
   
   },
-  getCatList:function(){
+  getItem:function(){
     var that = this
     wx.request({
-      url: config.cat,
+      url: config.goods_item,
+      data:{
+        cat:that.data.cat.cid,
+        page_no:that.data.pageNo
+      },
       success:function(resp){
-        that.setData({
-          catList:resp.data.data
-        })
+        if(resp.data.result==1){
+          that.setData({
+            itemList:resp.data.data
+          })
+        }
       }
     })
-  },
-  setCat:function(e){
-    console.log(e)
-    wx.setStorageSync('cat', e.currentTarget.dataset.cat)
   }
 })

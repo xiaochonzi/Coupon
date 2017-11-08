@@ -12,40 +12,28 @@
   <view class="good-info">
     <view class="good-name">{{couponInfo.title}}</view>
     <view>
-      <view class="good-price">原价:￥{{couponInfo.reserve_price}}</view>
+      <view class="good-price">原价:￥{{itemInfo.reserve_price}}</view>
       <view class="good-price-coupon">促销价:￥{{couponInfo.zk_final_price}}</view>
     </view>
   </view>
   <view class="coupon-info">
     <view class="coupon-info-item coupon-info-item-first">
-      <view class="coupon-denomination">{{couponInfo.CouponDenomination}}</view>
+      <view class="coupon-denomination">{{itemInfo.provcity}}</view>
       <view class="coupon-coin">
-        <image src="../../images/coupon.png"></image>￥{{couponInfo.Jian}}</view>
-      <view class="goods-sales">月销量: {{couponInfo.MonthlySales}}</view>
+      </view>
+      <view class="goods-sales">月销量: {{couponInfo.volume}}</view>
     </view>
     <view class="coupon-info-item-des">
-      <view class="coupon-des">剩余优惠券: {{couponInfo.CouponRemaining}}</view>
-      <view class="coupon-des">优惠券结束时间: {{couponInfo.CouponEndTime}}</view>
+      
+      <view class="coupon-des">剩余优惠券: {{couponInfo.coupon_total_count}}</view>
+      <view class="coupon-des">优惠券结束时间: {{couponInfo.coupon_end_time}}</view>
     </view>
   </view>
   <view class="shop">
-    <view class="shop-name">店铺名称:{{couponInfo.nick}}</view>
+    <view class="shop-name">店铺名称:{{couponInfo.shop_title}}</view>
   </view>
   <view class="get-coupon">
     <button bindtap="getCoupon" type="warn" loading="{{loadingBtn}}">淘宝口令购买</button>
-  </view>
-  <view hidden="{{showStatus?false:true}}" class="mask">
-    <view class="tao-kou-ling">
-      <view class="tao-kou-ling-title">
-        淘宝口令购买
-        <icon class="closed" type="cancel" size="30" color="#fff" bindtap="hideView"></icon>
-      </view>
-      <view class="tao-kou-ling-content">
-        <view class="copy-method">点击文本后，长按选择“全部复制”</view>
-        <input class="tao-kou-ling-text" value='{{password}}' maxlength='{{maxLength}}'></input>
-      </view>
-      <view class="explain">复制之后，请打开【手机淘宝】购买</view>
-    </view>
   </view>
   <view class="clear"></view>
 </view>
