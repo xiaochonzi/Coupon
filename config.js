@@ -5,7 +5,8 @@ var config = {
   item_info:`${host}/api/item_info`,
   coupon_item:`${host}/api/coupon_item`,
   coupon_info:`${host}/api/coupon_info`,
-  coupon_tkl:`${host}/api/coupon_tkl`
+  coupon_tkl:`${host}/api/coupon_tkl`,
+  item_tkl:`${host}/api/item_tkl`
 }
 
 module.exports = config

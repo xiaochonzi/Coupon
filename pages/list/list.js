@@ -1,7 +1,6 @@
 // pages/list/list.js
 var config = require('../../config.js')
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -55,13 +54,26 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.setData({
+      itemList: [],
+      loadOver: false,
+      isLoading: true,
+      pageNo: 1
+    })
+    this.getItem()
+    wx.stopPullDownRefresh()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.setData({
+      isLoading: true,
+      loadOver: false,
+      pageNo:this.data.pageNo+1
+    })
+    this.getItem()
   },
 
   /**
@@ -81,10 +93,19 @@ Page({
       success:function(resp){
         if(resp.data.result==1){
           that.setData({
-            itemList:resp.data.data
+            itemList:that.data.itemList.concat(resp.data.data),
+            isLoading: false
+          })
+        }else{
+          that.setData({
+            isLoading: true,
+            loadOver: true
           })
         }
       }
     })
+  },
+  setItem:function(e){
+    wx.setStorageSync('item', e.currentTarget.dataset.item)
   }
 })

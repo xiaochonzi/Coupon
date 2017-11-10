@@ -76,7 +76,6 @@ Page({
     })
   },
   setCat:function(e){
-    console.log(e)
     wx.setStorageSync('cat', e.currentTarget.dataset.cat)
   }
 })

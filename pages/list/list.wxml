@@ -1,24 +1,20 @@
 <!--pages/list/list.wxml-->
 <view class='page'>
-  <view class='list'>
-    <view class='rows' wx:for='{{itemList}}' wx:for-item='groups'>
-      <navigator wx:for='{{groups}}' wx:for-item='item' url='../info/info' bindtap='setCouponInfo' data-info='{{item}}'>
-        <view class='coupon-item'>
-          <image src='{{item.pict_url}}'></image>
-          <view class='goods-content'>
-            <view class='goods-content-view'>
-              <view class='goods-title'>{{item.title}}</view>
-              <view class='goods-price-sales'>
-                <view class='goods-price'>￥{{item.zk_final_price}}</view>
-                <view class='goods-volume'>{{item.volume}}人付款</view>
-              </view>
-              <view class='coupon-info'>{{item.coupon_info}}</view>
-            </view>
+  <view class='rows'>
+  <navigator wx:for="{{itemList}}" url='../info/info' wx:for-item='item' class='coupon-item' bindtap='setItem' data-item='{{item}}'>
+      <image src='{{item.pict_url}}'></image>
+      <view class='goods-content'>
+        <view class='goods-content-view'>
+          <view class='goods-title'>{{item.title}}</view>
+          <view class='goods-price-sales'>
+            <view class='goods-old'>￥{{item.reserve_price}}</view>
+            <view class='goods-price'>现价￥{{item.zk_final_price}}</view>
           </view>
+          <view class='goods-volume'>{{item.volume}}人付款</view>
         </view>
-      </navigator>
-    </view>
+      </view>
+    </navigator>
   </view>
-  <import src='../template/footer.wxml'/>
-  <template is='loading' data='{{isLoading,loadOver}}'/>
+  <import src='../template/footer.wxml' />
+  <template is='loading' data='{{isLoading,loadOver}}' />
 </view>
